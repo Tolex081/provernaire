@@ -14,11 +14,9 @@ import TeamLeader5 from './assets/lsquare.jpg';
 import './App.css';
 
 // Define API_BASE_URL for frontend calls.
-// For local development, it should be 'http://localhost:5000'.
 // For Vercel deployment, it should be an empty string so calls are relative (e.g., /api/teams).
-// You'll need to manually switch this or use environment variables like process.env.NODE_ENV
-// For now, setting it directly to localhost:5000 for your local testing.
-const API_BASE_URL = 'http://localhost:5000'; // Set for local development
+// process.env.REACT_APP_API_BASE_URL should be set to "" in Vercel environment variables.
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || ''; // Use environment variable, default to empty string
 
 const App = () => {
   const [gameState, setGameState] = useState('login');
@@ -64,7 +62,7 @@ const App = () => {
         team: { name: team.name, color: team.color },
         pfp: userProfile.pfp || null
       };
-      // CORRECTED: Ensure /api/ prefix for backend route
+      // Ensure /api/ prefix for backend route
       const response = await fetch(`${API_BASE_URL}/api/teams`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -155,7 +153,7 @@ const App = () => {
     });
 
     try {
-      // CORRECTED: Ensure /api/ prefix for backend route
+      // Ensure /api/ prefix for backend route
       await fetch(`${API_BASE_URL}/api/players`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -191,7 +189,7 @@ const App = () => {
     if (gameState === 'leaderboard') {
       const fetchLeaderboard = async () => {
         try {
-          // CORRECTED: Ensure /api/ prefix for backend route
+          // Ensure /api/ prefix for backend route
           const res = await fetch(`${API_BASE_URL}/api/players`);
           const data = await res.json();
           setPlayers(data);
@@ -211,7 +209,7 @@ const App = () => {
             <h2>Loading your team selection...</h2>
             <div className="loading-spinner"></div>
           </div>
-        </div>
+         </div>
       );
     }
 
