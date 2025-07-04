@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import './TeamSelection.css';
 
 // Define API_BASE_URL for frontend calls.
-// On Vercel, it should be an empty string so calls are relative (e.g., /api/teams).
-// In local development, it might be 'http://localhost:5000' if you use a local backend.
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || ''; // Default to empty string for relative paths
+// For local development, it should be 'http://localhost:5000' if you use a local backend.
+// For Vercel deployment, it should be an empty string so calls are relative (e.g., /api/teams).
+const API_BASE_URL = 'http://localhost:5000'; // Changed to use localhost:5000 for local backend
 
 const TeamSelection = ({ teams, onTeamSelect, username, selectedTeam }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,7 +13,7 @@ const TeamSelection = ({ teams, onTeamSelect, username, selectedTeam }) => {
   const saveUserTeam = async (username, team) => {
     try {
       // Construct the full API URL. It must include '/api/' to match vercel.json rewrites.
-      const response = await fetch(`${API_BASE_URL}/api/teams`, { // <-- CORRECTED: Ensured '/api' prefix
+      const response = await fetch(`${API_BASE_URL}/api/teams`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
