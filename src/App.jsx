@@ -36,7 +36,7 @@ const App = () => {
     if (!username?.trim()) return null;
     try {
       const cleanUsername = username.replace(/^@/, '').trim();
-      const response = await fetch(`${API_BASE_URL}/teams/${encodeURIComponent(cleanUsername)}`);
+      const response = await fetch(`${API_BASE_URL}/api/teams/${encodeURIComponent(cleanUsername)}`);
       if (response.ok) {
         const data = await response.json();
         const fullTeam = teams.find(t => t.name === data.team.name || t.name === data.team);
