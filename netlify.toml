@@ -1,21 +1,19 @@
 [build]
-  # Command to build your React frontend
-  command = "npm run build"
-  # Directory that contains the deploy-ready HTML files and assets
-  publish = "build"
+# Command to build your React frontend
+command = "npm run build"
+# Directory that contains the deploy-ready HTML files and assets
+publish = "build"
 
 [functions]
-  # Directory where your serverless functions are located
-  # Since your functions are in 'api', we'll point Netlify there.
-  directory = "api"
-  # Optional: Node.js version for your functions (match your local Node.js version)
-  node_bundler = "esbuild" # Recommended for faster builds
-  node_version = "18" # Or your preferred Node.js version (e.g., "20")
+# Directory where your serverless functions are located
+directory = "api"
+# Node.js settings
+node_bundler = "esbuild"
+node_version = "18"
 
 [[redirects]]
-  # This redirect rule is crucial for routing frontend requests to your serverless functions.
-  # It tells Netlify to rewrite any request starting with /api/ to your functions directory.
-  from = "/api/*"
-  to = "/.netlify/functions/index/:splat" # Assumes your main function is api/index.js
-  status = 200
-  force = true # Ensures the redirect happens even if a file exists at the path
+# Redirect all API calls to Netlify Functions
+from = "/api/*"
+to = "/.netlify/functions/index/:splat"
+status = 200
+force = true
