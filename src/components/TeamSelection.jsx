@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import './TeamSelection.css';
 
 // Define API_BASE_URL for frontend calls.
-// For local development, it should be 'http://localhost:5000' if you use a local backend.
 // For Vercel deployment, it should be an empty string so calls are relative (e.g., /api/teams).
-const API_BASE_URL = 'http://localhost:5000'; // Changed to use localhost:5000 for local backend
+// process.env.REACT_APP_API_BASE_URL should be set to "" in Vercel environment variables.
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || ''; // Use environment variable, default to empty string
 
 const TeamSelection = ({ teams, onTeamSelect, username, selectedTeam }) => {
   const [isLoading, setIsLoading] = useState(false);
