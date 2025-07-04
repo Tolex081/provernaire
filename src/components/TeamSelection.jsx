@@ -8,7 +8,7 @@ const TeamSelection = ({ teams, onTeamSelect, username, selectedTeam }) => {
 
   const saveUserTeam = async (username, team) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/teams`, {
+      const response = await fetch(`${API_BASE_URL}/api/teams`, {
 
         method: 'POST',
         headers: {
