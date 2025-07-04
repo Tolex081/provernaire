@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 {
   "rewrites": [
@@ -7,14 +7,4 @@
       "destination": "/api/index.js" 
     }
   ]
-=======
-
-{
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.js" 
-    }
-  ]
->>>>>>> ebbaf7b42d1bfb69b875a560428d6b4509af66af
 }
