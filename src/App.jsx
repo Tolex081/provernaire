@@ -13,11 +13,12 @@ import TeamLeader4 from './assets/zkdan.jpg';
 import TeamLeader5 from './assets/lsquare.jpg';
 import './App.css';
 
-// Ensure API_BASE_URL is correctly defined.
-// For Vercel, this should typically be an empty string if your API is also serverless
-// and deployed to the same Vercel project, allowing relative paths like /api/teams.
-// For local development, it might be 'http://localhost:5000' or similar.
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
+// Define API_BASE_URL for frontend calls.
+// For local development, it should be 'http://localhost:5000'.
+// For Vercel deployment, it should be an empty string so calls are relative (e.g., /api/teams).
+// You'll need to manually switch this or use environment variables like process.env.NODE_ENV
+// For now, setting it directly to localhost:5000 for your local testing.
+const API_BASE_URL = 'http://localhost:5000'; // Set for local development
 
 const App = () => {
   const [gameState, setGameState] = useState('login');
