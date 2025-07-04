@@ -1,15 +1,19 @@
+// src/components/TeamSelection.jsx
 import React, { useState } from 'react';
 import './TeamSelection.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+// Define API_BASE_URL for frontend calls.
+// On Vercel, it should be an empty string so calls are relative (e.g., /api/teams).
+// In local development, it might be 'http://localhost:5000' if you use a local backend.
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || ''; // Default to empty string for relative paths
 
 const TeamSelection = ({ teams, onTeamSelect, username, selectedTeam }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const saveUserTeam = async (username, team) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/teams`, {
-
+      // Construct the full API URL. It must include '/api/' to match vercel.json rewrites.
+      const response = await fetch(`${API_BASE_URL}/api/teams`, { // <-- CORRECTED: Ensured '/api' prefix
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,7 +29,8 @@ const TeamSelection = ({ teams, onTeamSelect, username, selectedTeam }) => {
       });
 
       if (!response.ok) {
-        const text = await response.text();
+        // Read response text for better error messages
+        const text = await response.text(); 
         throw new Error(`Failed to save team: ${response.status} - ${text}`);
       }
 
@@ -105,4 +110,3 @@ const TeamSelection = ({ teams, onTeamSelect, username, selectedTeam }) => {
   );
 };
 export default TeamSelection;
-
